@@ -7,7 +7,7 @@ const PlayerCard = ({player,setAvailableBalance,availableBalance,purchasedPlayer
     const[isSelected,setIsSelected]=useState(false)
 
     const handleSelected=(playerData)=>{
-
+         
         const playerPrice=parseInt(playerData.price.split("USD").join().split(",").join(""))
         if(availableBalance<playerPrice){
             alert("Not enough balance")
@@ -18,7 +18,7 @@ const PlayerCard = ({player,setAvailableBalance,availableBalance,purchasedPlayer
             availableBalance-playerPrice
         ); 
 
-        setPurchasedPlayers(...purchasedPlayers,playerData)
+        setPurchasedPlayers([...purchasedPlayers,playerData])
     }
     return (
         <div className="card bg-base-100  shadow-sm p-4">
@@ -48,7 +48,8 @@ const PlayerCard = ({player,setAvailableBalance,availableBalance,purchasedPlayer
    </div>
     <div className="flex justify-between mt-4 items-center">
      <p className='font-bold'>Price:${player.price}</p>
-      <button disabled={isSelected} onClick={()=>{handleSelected(player)}} className="btn">{isSelected===true?"Selected" : "Choose a player"}</button>
+      <button disabled={isSelected} onClick={()=>{handleSelected(player)}} className="btn">
+        {isSelected===true?"Selected" : "Choose a player"}</button>
     </div>
   </div>
 </div>
