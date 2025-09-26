@@ -2,6 +2,7 @@
 
 import { Suspense, useState } from 'react'
 import './App.css'
+import { ToastContainer} from 'react-toastify';
 
 import AvailablePlayers from './components/AvailablePlayers/AvailablePlayers'
 import Navbar from './components/Navbar/Navbar'
@@ -28,6 +29,7 @@ function App() {
    const removePlayer=(p)=>{
       const filertPlayer= purchasedPlayers.filter(ply=>ply.player_name!==p.player_name)
       setPurchasedPlayers(filertPlayer)
+      setAvailableBalance(availableBalance+parseInt(p.price.split("USD").join().split(",").join("")))
    }
   return (
     <>
@@ -48,7 +50,7 @@ function App() {
   </AvailablePlayers>
    </Suspense>:<SelectedPlayers removePlayer={removePlayer} purchasedPlayers={purchasedPlayers}></SelectedPlayers>
   }
-
+  <ToastContainer/>
     </>
   )
 }
